@@ -3,12 +3,12 @@ from math 	import *
 from PrettyTable import *
 import sys
 sys.setrecursionlimit(10000)
-# a é igual a 0
+# a e igual a 0
 a = 0
-# b é igual a 20
+# b e igual a 20
 b = 20
 table = PrettyTable()
-# o numero de iterações que ela pede no problema é 8
+# o numero de iteracoes que ela pede no problema e 8
 iterations = range(1,8)
 table.field_names = ['Interation','k','j','value']
 
@@ -30,7 +30,7 @@ def romberg():
 			a+=1
 	print table
 
-# Função base para resolver o problema.
+# Funcao base para resolver o problema.
 # -1.47206x10^-7x^10+0.0000148524x^9-0.000642464x^8+0.0155672x^7-0.231584x^6+2.17898x^5-12.861x^4+45.434x^3-85.9344x^2+65.5502x 
 
 def function(x):
@@ -53,8 +53,8 @@ def Rk1(k,j):
 	
 	else:
 		
-		#faz o somatorio de 1 até 2**(k-2) com a função abaixo.
-		#Não tem a necessidade de usar range.
+		#faz o somatorio de 1 ate 2**(k-2) com a funcao abaixo.
+		#Nao tem a necessidade de usar range.
 				
 		i=1
 		
