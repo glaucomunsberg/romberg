@@ -23,7 +23,7 @@ if __name__ == "__main__":
 		except Exception,msg:
 			log.write('Principal: Error: '+str(msg))
 	if option == 1:    
-		print h_of_k(1)
+		romberg()
 	elif option == 0:
 		print 'Good Bye!'
 	elif option == 2:
