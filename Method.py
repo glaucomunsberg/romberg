@@ -16,24 +16,24 @@ def romberg():
 		for j in iterations:
 			table.add_row([a,k,j, Rkj(k,j)])
 			a+=1
-	print x
+	print table
 
 def function(x):
 
-	sin(x) 
+	return sin(x) 
 
 def h_of_k(k):
 
-	(a-b)/2**(k-1)
+	return (a-b)/2**(k-1)
 
 def R11():
 
-	( (b-a) / 2 ) * ( function(a) + function(b) )
+	return ( (b-a) / 2 ) * ( function(a) + function(b) )
 
 def Rk1(k,j):
 
 	if k == 1:
-		R11()
+		return R11()
 	
 	else:
 		
@@ -43,7 +43,7 @@ def Rk1(k,j):
 		for i in somatorio:
 			total += function( a+(2*i-1) * h_of_k(k) )
 
-		(1 / 2 ) * ( Rk1(k-1,1) + h_of_k(k-1) * totalSomatorio )
+		return (1 / 2 ) * ( Rk1(k-1,1) + h_of_k(k-1) * totalSomatorio )
 
 def Rkj(k,j):
 
