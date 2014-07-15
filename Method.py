@@ -9,7 +9,8 @@ a = 0
 b = 20
 table = PrettyTable()
 # o numero de iteracoes que ela pede no problema e 8
-iterations = range(1,8)
+iterations = range(1,9)
+matrix = [[-1 for x in range(1,9)] for x in xrange(1,9)] 
 table.field_names = ['Interation','k','j','value']
 
 def romberg():
@@ -22,7 +23,7 @@ def romberg():
 			
 			# Colunas com arredontamento tipo 1
 			
-			table.add_row([a,k,j, round(Rkj(k,j),5) ])
+			table.add_row([a,k,j, round(Rkj(k+1,j+1),5) ])
 			
 			# Colunas com arredontamento tipo 2			
 			#table.add_row([a,k,j, '%.3f' %round(Rkj(k,j),5)])
@@ -42,30 +43,34 @@ def h_of_k(k):
 	return (a-b)/2**(k-1)
 
 def R11():
-
+	print "RKJ [1,1]"
 	return ( (b-a) / 2 ) * ( function(a) + function(b) )
 
 def Rk1(k,j):
 
-	if k == 1:
-		# Nunca vai cair nesse caso. O if do RKJ assegura isso.
-		return R11()
-	
+	print "RKJ [",k,",",j,"]"
+	if matrix[k-1][j-1] != -1:
+		return matrix[k-1][j-1]
 	else:
+		if k == 1:
+			# Nunca vai cair nesse caso. O if do RKJ assegura isso.
+			return R11()
 		
-		#faz o somatorio de 1 ate 2**(k-2) com a funcao abaixo.
-		#Nao tem a necessidade de usar range.
-				
-		i=1
-		
-		for i in 2**(k-2):
+		else:
+			totalSomatorio = 0
+			#faz o somatorio de 1 ate 2**(k-2) com a funcao abaixo.
+			#Nao tem a necessidade de usar range.
+					
+			rang = range(1, int(2**(k-2)))
 			
-			totalSomatorio += function( a+(2*i-1)*h_of_k(k) )
-		
-		return (1 / 2 ) * ( Rk1(k-1,1) + h_of_k(k-1) * totalSomatorio )
+			for i in rang:
+				totalSomatorio += function( a+(2*i-1)*h_of_k(k) )
+			
+			matrix[k-1][j-1] = (1 / 2 ) * ( Rk1(k-1,1) + h_of_k(k-1) * totalSomatorio )
+			return matrix[k-1][j-1]
 
 def Rkj(k,j):
-
+	print "RKJ [",k,",",j,"]"
 	if k == 1 and j == 1:
 		return R11()
 	elif j == 1:
