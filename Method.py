@@ -19,28 +19,21 @@ table = PrettyTable()
 # o numero de iteracoes que ela pede no problema e 8
 iterations = range(1,9)
 matrix = [[-1 for x in range(1,9)] for x in xrange(1,9)] 
-table.field_names = ['Interation','k','j','Resultado']
+table.field_names = ['','1','2','3','4','5','6','7','8']
 
 def romberg():
 
-	it=0
 	for k in iterations:
 
 		interate = range(1,k+1)
-
 		for j in interate:
 
 			print "POS[",k,",",j,"]"
-			# Colunas sem arredondamento
-			#table.add_row([a,k,j, Rkj(k,j)])
+			R(k,j)
 			
-			# Colunas com arredontamento tipo 2
-			#print "result:",
-			table.add_row([it,k,j, '%.3f' %round(Result(k,j),5)])
-			it+=1
-			
+	for i in iterations:
+		table.add_row([i,matrix[i-1][0],matrix[i-1][1],matrix[i-1][2],matrix[i-1][3],matrix[i-1][4],matrix[i-1][5],matrix[i-1][6],matrix[i-1][7]])
 	print table
-	print matrix
 
 # Funcao base para resolver o problema.
 # -1.47206x10^-7x^10+0.0000148524x^9-0.000642464x^8+0.0155672x^7-0.231584x^6+2.17898x^5-12.861x^4+45.434x^3-85.9344x^2+65.5502x 
@@ -83,11 +76,11 @@ def Rk1(k,j):
 
 # Passar os indices e os valores.
 def Rkj(k,j):
-	matrix[k-1][j-1] = ( Result(k,j-1) + (((Result(k,j-1) - Result(k-1,j-1) )) / (4**(j-1)-1)) ) 
+	matrix[k-1][j-1] = ( R(k,j-1) + (((R(k,j-1) - R(k-1,j-1) )) / (4**(j-1)-1)) ) 
 	
 	return matrix[k-1][j-1]
 
-def Result(k,j):
+def R(k,j):
 	if k == 1 and j == 1:
 		return R11(k,j)
 	if j == 1:
@@ -95,7 +88,7 @@ def Result(k,j):
 	else:
 		return Rkj(k,j)
 
-def ResultByScipy():
+def RombergByScipy():
 	gaussian = lambda x: -1.47206*(10**-7)*(x**10)+0.0000148524*(x**9)-0.000642464*(x**8)+0.0155672*(x**7)-0.231584*(x**6)+2.17898*(x**5)-12.861*(x**4)+45.434*(x**3)-85.9344*(x**2)+65.5502*(x)
 	result = integrate.romberg(gaussian, 0, 1, show=True)
 	print("%g %g" % (2*result, erf(1)))

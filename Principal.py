@@ -26,19 +26,26 @@ if __name__ == "__main__":
 				if rangeOut == True:
 					print bcolors.FAIL+'Out of range, try again' + bcolors.ENDC
 				option = int(raw_input('Option: '))
+
 				if option < 0  or option > 4:
 					rangeOut = True
+
 			except Exception,msg:
 				rangeOut = True
 
-		if option == 1:    
-			romberg()
+		if option == 1:
+			try:
+				romberg()
+			except Exception,msg:
+				print bcolors.FAIL +'Something is wrong!\n'+ str(msg) + bcolors.ENDC
 			raw_input('\nPress enter')
+
 		elif option == 0:
 			os.system('clear')
 			print bcolors.HEADER + '======================== Romberg - Exit ========================' + bcolors.ENDC
 			print 'Good Bye!'
 			sair = True
+
 		elif option == 2:
 			os.system('clear')
 			print bcolors.HEADER + '===================== Romberg - Integrantes =====================' + bcolors.ENDC
@@ -50,21 +57,30 @@ if __name__ == "__main__":
 			print '		André Alba'
 			print '     Glauco Roberto'
 			raw_input('\nPress enter')
+
 		elif option == 3:
 			os.system('clear')
-			print bcolors.HEADER + '===================== Romberg - Calculate ======================' + bcolors.ENDC
-			result = function(int(raw_input('Your \'x\' to function(x):')))
-			print 'Result to function(x)=',result
+			try:
+				print bcolors.HEADER + '===================== Romberg - Calculate ======================' + bcolors.ENDC
+				result = function(int(raw_input('Your \'x\' to function(x):')))
+				print 'Result to function(x)=',result
+			except Exception,msg:
+				print bcolors.FAIL +'Something is wrong!\n'+ str(msg) + bcolors.ENDC
 			raw_input('Press enter')
+
 		elif option == 4:
 			os.system('clear')
-			print bcolors.HEADER + '====================== Romberg - Result =======================' + bcolors.ENDC
-			print 'Using Scipy Library'
-			print ''
-			result = ResultByScipy()
+			try:
+				print bcolors.HEADER + '====================== Romberg - Library =======================' + bcolors.ENDC
+				print 'Using Scipy Library'
+				print ''
+				result = RombergByScipy()
+			except Exception,msg:
+				print bcolors.FAIL +'Something is wrong!\n'+ str(msg) + bcolors.ENDC
 			raw_input('\nPress enter')
+
 		else:
 			os.system('clear')
 			print bcolors.HEADER + '======================= Romberg - Ooops! ======================' + bcolors.ENDC
-			print bcolors.FAIL +'Something is wrong!' + bcolors.ENDC
+			print bcolors.FAIL +'Something is wrong! Oops!' + bcolors.ENDC
 			sair = True
