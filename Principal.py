@@ -34,10 +34,12 @@ if __name__ == "__main__":
 				rangeOut = True
 
 		if option == 1:
-			try:
-				romberg()
-			except Exception,msg:
-				print bcolors.FAIL +'Something is wrong!\n'+ str(msg) + bcolors.ENDC
+			os.system('clear')
+			print bcolors.HEADER + '========================= Romberg  - Method =====================' + bcolors.ENDC
+			#try:
+			romberg()
+			#except Exception,msg:
+			#	print bcolors.FAIL +'Something is wrong!\n'+ str(msg) + bcolors.ENDC
 			raw_input('\nPress enter')
 
 		elif option == 0:

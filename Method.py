@@ -46,8 +46,9 @@ def h_of_k(k):
 	return (a-b)/2**(k-1)
 
 def R11(k,j):
-	
-	matrix[k-1][j-1] = ( (b-a) / 2 ) * ( function(a) + function(b) )
+	if matrix[k-1][j-1] == -1:
+		matrix[k][j] = ( (b-a) / 2 ) * ( function(a) + function(b) )
+
 	return matrix[k-1][j-1]
 
 def Rk1(k,j):
@@ -72,21 +73,20 @@ def Rk1(k,j):
 				totalSomatorio += function( a+(2*i-1)*h_of_k(k) )
 			
 			matrix[k-1][j-1] = (1 / 2 ) * ( matrix[k-2][1] + h_of_k(k-1) * totalSomatorio )
+			print "RK1[",k,",",j,"]",matrix[k-1][j-1]
 			return matrix[k-1][j-1]
 
 # Passar os indices e os valores.
-def Rkj(k,j):
-	matrix[k-1][j-1] = ( R(k,j-1) + (((R(k,j-1) - R(k-1,j-1) )) / (4**(j-1)-1)) ) 
-	
-	return matrix[k-1][j-1]
+
 
 def R(k,j):
 	if k == 1 and j == 1:
 		return R11(k,j)
-	if j == 1:
+	elif k > 1 and j == 1:
 		return Rk1(k,j)
 	else:
-		return Rkj(k,j)
+		matrix[k-1][j-1] = ( R(k,j-1) + (((R(k,j-1) - R(k-1,j-1) )) / (4**(j-1)-1)) ) 
+		return matrix[k-1][j-1]
 
 def RombergByScipy():
 	gaussian = lambda x: -1.47206*(10**-7)*(x**10)+0.0000148524*(x**9)-0.000642464*(x**8)+0.0155672*(x**7)-0.231584*(x**6)+2.17898*(x**5)-12.861*(x**4)+45.434*(x**3)-85.9344*(x**2)+65.5502*(x)
