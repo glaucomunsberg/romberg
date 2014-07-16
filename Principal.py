@@ -16,8 +16,8 @@ if __name__ == "__main__":
 		print 'Option - Description'
 		print '     1 - Solve the problem using Romberg Recursive'
 		print '     2 - Solve the problem using Romberg Iterative'
-		print '     3 - Calculate f(x)'
-		print '     4 - Result with Scipy Library'
+		print '     3 - Solve the problem using Scipy Library'
+		print '     4 - Calculate f(x)'
 		print '     5 - About'
 		print '     0 - Exit' 
 		print ''
@@ -56,7 +56,7 @@ if __name__ == "__main__":
 			#	print bcolors.FAIL +'Something is wrong!\n'+ str(msg) + bcolors.ENDC
 			raw_input('\nPress enter')
 
-		elif option == 3:
+		elif option == 4:
 			os.system('clear')
 			try:
 				print bcolors.HEADER + '===================== Romberg - Calculate ======================' + bcolors.ENDC
@@ -66,7 +66,7 @@ if __name__ == "__main__":
 				print bcolors.FAIL +'Something is wrong!\n'+ str(msg) + bcolors.ENDC
 			raw_input('Press enter')
 
-		elif option == 4:
+		elif option == 3:
 			os.system('clear')
 			try:
 				print bcolors.HEADER + '====================== Romberg - Library =======================' + bcolors.ENDC
