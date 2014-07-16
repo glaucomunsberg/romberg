@@ -2,7 +2,6 @@ from numpy 	import *
 from math 	import *
 from PrettyTable import *
 from scipy import integrate
-from scipy import interpolate
 from scipy.special import erf
 import sys
 sys.setrecursionlimit(10000)
@@ -40,12 +39,7 @@ def romberg():
 # -1.47206x10^-7x^10+0.0000148524x^9-0.000642464x^8+0.0155672x^7-0.231584x^6+2.17898x^5-12.861x^4+45.434x^3-85.9344x^2+65.5502x 
 
 def function(x):
-	
-	x = [0,2,4,6,8,10,12,14,16,18,20]
-	y = [0,1.8,2,4,4,6,4,3.6,3.4,2.8,0]
-	print interpolate.lagrange(x,y)
-	return 0
-	#return -1.47206*(10**-7)*(x**10)+0.0000148524*(x**9)-0.000642464*(x**8)+0.0155672*(x**7)-0.231584*(x**6)+2.17898*(x**5)-12.861*(x**4)+45.434*(x**3)-85.9344*(x**2)+65.5502*(x)
+	return -1.47206*(10**-7)*(x**10)+0.0000148524*(x**9)-0.000642464*(x**8)+0.0155672*(x**7)-0.231584*(x**6)+2.17898*(x**5)-12.861*(x**4)+45.434*(x**3)-85.9344*(x**2)+65.5502*(x)
 
 def h_of_k(k):
 
@@ -98,5 +92,3 @@ def RombergByScipy():
 	gaussian = lambda x: -1.47206*(10**-7)*(x**10)+0.0000148524*(x**9)-0.000642464*(x**8)+0.0155672*(x**7)-0.231584*(x**6)+2.17898*(x**5)-12.861*(x**4)+45.434*(x**3)-85.9344*(x**2)+65.5502*(x)
 	result = integrate.romberg(gaussian, 0, 1, show=True)
 	print("%g %g" % (2*result, erf(1)))
-
-	
