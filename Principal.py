@@ -86,6 +86,7 @@ if __name__ == "__main__":
 			print 'Integrantes:'
 			print '		André Alba'
 			print '     Glauco Roberto'
+			print '		Guilherme Cousin'
 			raw_input('\nPress enter')
 		elif option == 0:
 			os.system('clear')
