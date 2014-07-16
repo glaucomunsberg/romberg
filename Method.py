@@ -22,7 +22,7 @@ iterations = range(1,9)
 matrix = [[-1 for x in range(1,9)] for x in xrange(1,9)] 
 table.field_names = ['','1','2','3','4','5','6','7','8']
 
-def romberg():
+def rombergRecursive():
 
 	for k in iterations:
 
@@ -36,17 +36,13 @@ def romberg():
 		table.add_row([i,matrix[i-1][0],matrix[i-1][1],matrix[i-1][2],matrix[i-1][3],matrix[i-1][4],matrix[i-1][5],matrix[i-1][6],matrix[i-1][7]])
 	print table
 
-# Funcao base para resolver o problema.
-# -1.47206x10^-7x^10+0.0000148524x^9-0.000642464x^8+0.0155672x^7-0.231584x^6+2.17898x^5-12.861x^4+45.434x^3-85.9344x^2+65.5502x 
-
 def function(x):
 	
 	x = [0,2,4,6,8,10,12,14,16,18,20]
 	y = [0,1.8,2,4,4,6,4,3.6,3.4,2.8,0]
 	print interpolate.lagrange(x,y)
 	return 0
-	#return -1.47206*(10**-7)*(x**10)+0.0000148524*(x**9)-0.000642464*(x**8)+0.0155672*(x**7)-0.231584*(x**6)+2.17898*(x**5)-12.861*(x**4)+45.434*(x**3)-85.9344*(x**2)+65.5502*(x)
-
+	
 def h_of_k(k):
 
 	return (a-b)/2**(k-1)
@@ -59,7 +55,6 @@ def R11(k,j):
 
 def Rk1(k,j):
 
-	
 	if matrix[k-1][j-1] != -1:
 		print "RK1[",k,",",j,"]",matrix[k-1][j-1]
 		return matrix[k-1][j-1]
@@ -94,9 +89,7 @@ def R(k,j):
 		matrix[k-1][j-1] = ( R(k,j-1) + (((R(k,j-1) - R(k-1,j-1) )) / (4**(j-1)-1)) ) 
 		return matrix[k-1][j-1]
 
-def RombergByScipy():
+def rombergByScipy():
 	gaussian = lambda x: -1.47206*(10**-7)*(x**10)+0.0000148524*(x**9)-0.000642464*(x**8)+0.0155672*(x**7)-0.231584*(x**6)+2.17898*(x**5)-12.861*(x**4)+45.434*(x**3)-85.9344*(x**2)+65.5502*(x)
-	result = integrate.romberg(gaussian, 0, 1, show=True)
+	result = integrate.romberg(gaussian,a, b, show=True)
 	print("%g %g" % (2*result, erf(1)))
-
-	

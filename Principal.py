@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from Method import *
+from RombergIterate import *
 import sys, time, datetime, os
 
 
@@ -13,10 +14,11 @@ if __name__ == "__main__":
 		os.system('clear')
 		print bcolors.HEADER + '============================= Romberg =========================' + bcolors.ENDC
 		print 'Option - Description'
-		print '     1 - Solve the problem using Romberg'
-		print '     2 - About'
+		print '     1 - Solve the problem using Romberg Recursive'
+		print '     2 - Solve the problem using Romberg Iterative'
 		print '     3 - Calculate f(x)'
 		print '     4 - Result with Scipy Library'
+		print '     5 - About'
 		print '     0 - Exit' 
 		print ''
 		option = -7
@@ -35,29 +37,23 @@ if __name__ == "__main__":
 
 		if option == 1:
 			os.system('clear')
-			print bcolors.HEADER + '========================= Romberg  - Method =====================' + bcolors.ENDC
+			print bcolors.HEADER + '========================= Romberg  - Recursive =====================' + bcolors.ENDC
 			#try:
-			romberg()
+			rombergRecursive()
 			#except Exception,msg:
 			#	print bcolors.FAIL +'Something is wrong!\n'+ str(msg) + bcolors.ENDC
 			raw_input('\nPress enter')
 
-		elif option == 0:
-			os.system('clear')
-			print bcolors.HEADER + '======================== Romberg - Exit ========================' + bcolors.ENDC
-			print 'Good Bye!'
-			sair = True
+		
 
 		elif option == 2:
 			os.system('clear')
-			print bcolors.HEADER + '===================== Romberg - Integrantes =====================' + bcolors.ENDC
-			print 'Biblioteca desenvolvida para solucionaro o problema'
-			print '     proposto no trabalho de Calculo Numerico. Para  saber'
-			print '     mais sobre o trabalho, por favor, acesse Ava/UFPel'
-			print ''
-			print 'Integrantes:'
-			print '		André Alba'
-			print '     Glauco Roberto'
+			print bcolors.HEADER + '========================= Romberg  - Iterative =====================' + bcolors.ENDC
+			#try:
+			gaussian = lambda x: -1.47206*(10**-7)*(x**10)+0.0000148524*(x**9)-0.000642464*(x**8)+0.0155672*(x**7)-0.231584*(x**6)+2.17898*(x**5)-12.861*(x**4)+45.434*(x**3)-85.9344*(x**2)+65.5502*(x)
+			rombergIterate(gaussian,a,b,show=True)
+			#except Exception,msg:
+			#	print bcolors.FAIL +'Something is wrong!\n'+ str(msg) + bcolors.ENDC
 			raw_input('\nPress enter')
 
 		elif option == 3:
@@ -76,11 +72,26 @@ if __name__ == "__main__":
 				print bcolors.HEADER + '====================== Romberg - Library =======================' + bcolors.ENDC
 				print 'Using Scipy Library'
 				print ''
-				result = RombergByScipy()
+				result = rombergByScipy()
 			except Exception,msg:
 				print bcolors.FAIL +'Something is wrong!\n'+ str(msg) + bcolors.ENDC
 			raw_input('\nPress enter')
-
+		elif option == 5:
+			os.system('clear')
+			print bcolors.HEADER + '===================== Romberg - Group =====================' + bcolors.ENDC
+			print 'Biblioteca desenvolvida para solucionaro o problema'
+			print '     proposto no trabalho de Calculo Numerico. Para  saber'
+			print '     mais sobre o trabalho, por favor, acesse Ava/UFPel'
+			print ''
+			print 'Integrantes:'
+			print '		André Alba'
+			print '     Glauco Roberto'
+			raw_input('\nPress enter')
+		elif option == 0:
+			os.system('clear')
+			print bcolors.HEADER + '======================== Romberg - Exit ========================' + bcolors.ENDC
+			print 'Good Bye!'
+			sair = True
 		else:
 			os.system('clear')
 			print bcolors.HEADER + '======================= Romberg - Ooops! ======================' + bcolors.ENDC
